@@ -2,17 +2,6 @@
   text-align: start;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +24,250 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.error-massage {
+  color: red;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.btn {
+  border-radius: 5px;
+  background-color: rgb(142, 57, 142);
+  color: aliceblue;
+  border-color: transparent;
+  padding: 5px;
+  margin: 2px;
+}
+
+.btn:hover {
+  background-color: rgb(203, 69, 203);
+  color: aliceblue;
+  border-color: transparent;
+  padding: 5px;
+  margin: 2px;
+}
+
+.delete-btn:hover {
+  background-color: rgb(189, 49, 36);
+}
+
+.cancel-btn:hover {
+  background-color: rgb(165, 158, 158);
+}
+
+.users {
+  /* border: 3px solid black; */
+  width: max-content;
+  padding: 5px;
+  min-width: 300px;
+  margin-left: 20px;
+}
+
+.search {
+  padding: 18px 0;
+  margin: 11px;
+}
+
+.user {
+  height: max-content;
+  width: max-content;
+  margin-bottom: 8px;
+  padding: 5px;
+  display: flex;
+  min-width: 300px;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.user-details {
+  height: max-content;
+  width: max-content;
+  margin-bottom: 8px;
+  padding: 5px;
+  display: flex;
+  min-width: 300px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+}
+
+.all-completed {
+  border: 2px solid green;
+}
+
+.not-all-completed {
+  border: 2px solid red;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.other-data {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.address {
+  border: 3px solid transparent;
+  border-radius: 15px;
+  display: none;
+  padding: 10px;
+  background-color: rgb(167, 167, 167);
+}
+
+.address-btn {
+  width: max-content;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 298px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.display-address {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 12px;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  height: 480px;
+}
+
+.todo-list {
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.todo {
+  max-width: 350px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 15px;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.todos-details {
+  width: 205px;
+  text-align: start;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  height: 480px;
+}
+
+.post-list {
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.post {
+  width: 300px;
+  border: 1px solid;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.post-text {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.mark-complete-btn {
+  width: max-content;
+  height: max-content;
+}
+
+.home {
+  display: flex;
+}
+
+.posts-and-todos {
+  display: flex;
+  gap: 19px;
+}
+
+.posts-todos-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+}
+
+.add-btn:hover {
+  background: rgb(120, 221, 120);
+  color: green;
+}
+
+.add-post {}
+
+.add-user-form {
+  border: 2px solid pink;
+  margin: 50px 40px;
+  padding: 20px;
+  height: max-content;
+  width: max-content;
+}
+
+.add-user-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(142, 57, 142);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(174, 100, 174);
 }

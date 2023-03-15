@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Todo from './Todo'
 import Post from './Post'
-import './Style.css'
 import axios from 'axios';
 
 
@@ -9,7 +8,7 @@ import axios from 'axios';
 const todosUrl = 'https://jsonplaceholder.typicode.com/todos';
 const postsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-const PostAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) => {
+const PostsAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) => {
     const [newTodo, setNewTodo] = useState({ userId: userId, id: Math.random(), title: '', completed: false });
     const [newPost, setNewPost] = useState({ userId: userId, id: Math.random(), title: '', body: '' });
     const [displayPostForm, setDisplayPostForm] = useState(false);
@@ -116,11 +115,8 @@ const PostAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) => 
                 <button className='btn add-btn' onClick={addTodo}>Add</button>
                 <button className='btn cancel-btn' onClick={() => setDisplayTodoForm(false)}>Cancel</button>
             </div>
-
-
-
         </div >
     )
 }
 
-export default PostAndTodos
+export default PostsAndTodos

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const ErrorComponent = ({title}) => {
+export const ErrorComponent = ({title, display}) => {
   return (
-    <div>{title}</div>
+    <div className={display ? 'error-massage' : 'hidden'} >{title}</div>
   )
 }

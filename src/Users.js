@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import User from './User';
-import './Style.css'
+import User from './user-components/User';
 import { ErrorComponent } from './ErrorComponent';
 
 
@@ -48,14 +47,14 @@ const Users = () => {
             newUsers.push(newUser);
             setUsers(users);
             setDisplayAddUserForm(false);
-            setNewUser({...newUser, username: '', email: '', address: '', id: Math.random()});
+            setNewUser({ ...newUser, username: '', email: '', address: '', id: Math.random() });
         }
         setInputError(true);
     }
     const cancelAddUser = () => {
         setDisplayAddUserForm(false);
         setInputError(false);
-        setNewUser({...newUser, username: '', email: '', address: ''});
+        setNewUser({ ...newUser, username: '', email: '', address: '' });
     }
 
     return (
@@ -64,7 +63,16 @@ const Users = () => {
                 <div className='search'>
                     Search: <input type="text" onChange={updateSearchValue} />
                     <button className='btn' onClick={() => setDisplayAddUserForm(true)}>Add User</button>
-                </div><br /><br />
+                </div>
+                <div className={displayAddUserForm ? 'add-user-form' : 'hidden'}>
+                    Name: <input type="text" value={newUser.username} onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} /><br /><br />
+                    Email: <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} /><br />
+                    <ErrorComponent title={'invalid name or email'} display={inputError} />
+                    <div className='add-user-buttons'>
+                        <button className='btn add-btn' onClick={addUser}>Add</button>
+                        <button className='btn cancel-btn' onClick={cancelAddUser}>Cancel</button>
+                    </div>
+                </div>
                 {
                     users.map(user => {
                         if (!!user) {
@@ -73,17 +81,7 @@ const Users = () => {
                     })
                 }
             </div>
-            <div className={displayAddUserForm ? 'add-user-form' : 'hidden'}>
-                Name: <input type="text" value={newUser.username} onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} /><br /><br />
-                Email: <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} /><br />
-                <div className={inputError ? 'error-massage' : 'hidden'}>
-                    <ErrorComponent title={'The inputs are not valid '} />
-                </div>
-                <div className='add-user-buttons'>
-                    <button className='btn add-btn' onClick={addUser}>Add</button>
-                    <button className='btn cancel-btn' onClick={cancelAddUser}>Cancel</button>
-                </div>
-            </div>
+
         </div>
     )
 }
