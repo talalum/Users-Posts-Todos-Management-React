@@ -87,9 +87,7 @@ const PostsAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) =>
             </div>
             <div className={displayPostForm ? 'add-post' : 'hidden'}>
                 Title: <input type="text" value={newPost.title} onChange={(e) => { setNewPost({ ...newPost, title: e.target.value }) }} /><br />
-                {newPost.title}<br />
                 Body: <input type="text" value={newPost.body} onChange={(e) => { setNewPost({ ...newPost, body: e.target.value }) }} /><br />
-                {newPost.body}<br />
                 <button className='btn add-btn' onClick={addPost}>Add</button>
                 <button className='btn cancel-btn' onClick={() => setDisplayPostForm(false)}>Cancel</button>
             </div>
