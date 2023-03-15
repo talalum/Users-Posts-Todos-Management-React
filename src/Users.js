@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import User from './User';
 import './Style.css'
+import { ErrorComponent } from './ErrorComponent';
 
 
 const usersUrl = 'https://jsonplaceholder.typicode.com/users';
@@ -11,7 +12,7 @@ const Users = () => {
     const [usersOriginal, setusersOriginal] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [displayAddUserForm, setDisplayAddUserForm] = useState(false);
-    const [newUser, setNewUser] = useState({ username: '', id: Math.random(), email: '', address: '' })
+    const [newUser, setNewUser] = useState({ username: '', id: Math.random(), email: '', address: {} })
 
     const [inputError, setInputError] = useState(false)
 
@@ -31,10 +32,6 @@ const Users = () => {
         setUsers(afterSearch);
     }, [searchValue]);
 
-    // useEffect(() => {
-    //     console.log(users);
-    // }, [users]);
-
     const updateSearchValue = (e) => {
         setSearchValue(e.target.value);
     }
@@ -45,10 +42,20 @@ const Users = () => {
     }
 
     const addUser = async () => {
-        const newUsers = users;
-        newUsers.push(newUser);
-        setUsers(users);
-        setDisplayAddUserForm(false)
+        if (newUser.username.length > 3 && newUser.email.includes('@')) {
+            setInputError(false);
+            const newUsers = users;
+            newUsers.push(newUser);
+            setUsers(users);
+            setDisplayAddUserForm(false);
+            setNewUser({...newUser, username: '', email: '', address: '', id: Math.random()});
+        }
+        setInputError(true);
+    }
+    const cancelAddUser = () => {
+        setDisplayAddUserForm(false);
+        setInputError(false);
+        setNewUser({...newUser, username: '', email: '', address: ''});
     }
 
     return (
@@ -67,11 +74,14 @@ const Users = () => {
                 }
             </div>
             <div className={displayAddUserForm ? 'add-user-form' : 'hidden'}>
-                Name: <input type="text" value={newUser.username} onChange={(e) => e.target.value !== '' ? setNewUser({ ...newUser, username: e.target.value }) : setInputError(true)} /><br /><br />
-                Email: <input type="email" value={newUser.email} onChange={(e) => e.target.value !== '' ? setNewUser({ ...newUser, email: e.target.value }) : setInputError(true)} /><br />
+                Name: <input type="text" value={newUser.username} onChange={(e) => setNewUser({ ...newUser, username: e.target.value })} /><br /><br />
+                Email: <input type="email" value={newUser.email} onChange={(e) => setNewUser({ ...newUser, email: e.target.value })} /><br />
+                <div className={inputError ? 'error-massage' : 'hidden'}>
+                    <ErrorComponent title={'The inputs are not valid '} />
+                </div>
                 <div className='add-user-buttons'>
                     <button className='btn add-btn' onClick={addUser}>Add</button>
-                    <button className='btn cancel-btn' onClick={() => setDisplayAddUserForm(false)}>Cancel</button>
+                    <button className='btn cancel-btn' onClick={cancelAddUser}>Cancel</button>
                 </div>
             </div>
         </div>

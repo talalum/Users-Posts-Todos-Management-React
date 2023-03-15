@@ -49,7 +49,6 @@ const PostAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) => 
         let updatedTodos = todos;
         updatedTodos.forEach(todo => {
             if (todo?.id === updateTodo?.id) {
-                console.log("enter!");
                 todo.completed = true;
             }
         });

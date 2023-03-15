@@ -2,6 +2,12 @@
     display: none;
 }
 
+.error-massage{
+    color: red;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
 .btn {
     border-radius: 5px;
     background-color: rgb(142, 57, 142);

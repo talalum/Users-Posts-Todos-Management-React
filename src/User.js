@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-import { getTodoByUser } from './utils/todosUtils'
-import { getPostsByUser } from './utils/postsUtils'
+import { useState } from 'react'
 import Address from './Address';
 import './Style.css'
 import PostAndTodos from './PostAndTodos';
@@ -10,19 +8,22 @@ const User = ({ user, deleteUserCallback }) => {
         id: user.id,
         username: user.username,
         email: user.email,
+        address: {}
     });
+
+    const [newAddress, setNewAddress] = useState({});
+    const [newUserData, setNewUserData] = useState(userData)
+
     const [taskCompleted, setTaskCompleted] = useState(false);
     const [displayAddress, setDisplayAddress] = useState(false);
-
 
     const [showPosts, setShowPosts] = useState(false);
     const [showTodos, setShowTodos] = useState(false);
 
-   
-
-
     const updateUser = async () => {
-        console.log('update?');
+        console.log(newAddress);
+        setuserData({ ...newUserData, address: newAddress })
+        setDisplayAddress(false);
     };
 
     const deleteUser = async () => {
@@ -30,7 +31,7 @@ const User = ({ user, deleteUserCallback }) => {
     };
 
     const addAddress = (address) => {
-        setuserData({ ...userData, address })
+        setNewAddress(address)
     }
 
     const clickOnId = async () => {
@@ -45,9 +46,9 @@ const User = ({ user, deleteUserCallback }) => {
     return (
         <div className={taskCompleted ? 'all-completed user' : 'not-all-completed user'}>
             <div className='user-details'>
-                <div onClick={clickOnId}>ID: {user.id}<br/></div>
-                <div>Name: <input type="text" value={userData.username} onChange={(e) => setuserData({ ...userData, username: e.target.value })} /><br /></div>
-                <div>Email: <input type="email" value={userData.email} onChange={(e) => setuserData({ ...userData, email: e.target.value })} /><br /></div>
+                <div onClick={clickOnId}>ID: {user.id}<br /></div>
+                <div>Name: <input type="text" value={newUserData.username} onChange={(e) => setNewUserData({ ...newUserData, username: e.target.value })} /><br /></div>
+                <div>Email: <input type="email" value={newUserData.email} onChange={(e) => setNewUserData({ ...newUserData, email: e.target.value })} /><br /></div>
                 <div className='buttons'>
                     <div className='other-data'>
                         <button onMouseEnter={() => setDisplayAddress(true)} onClick={() => setDisplayAddress(false)} className=' btn address-btn'>Show More Data</button>
@@ -59,7 +60,7 @@ const User = ({ user, deleteUserCallback }) => {
                     </div>
                 </div>
             </div>
-            <PostAndTodos showPosts={showPosts} showTodos={showTodos} userId={user.id} updetTodosCompleted={updetTodosCompleted}/>
+            <PostAndTodos showPosts={showPosts} showTodos={showTodos} userId={user.id} updetTodosCompleted={updetTodosCompleted} />
         </div>
     )
 }

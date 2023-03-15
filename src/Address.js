@@ -9,7 +9,7 @@ const Address = ({ userAddress, displayAddress, callback }) => {
         zipcode: userAddress.zipcode,
     })
     useEffect(() => {
-        callback(address)
+        callback(address);
     }, [address.city, address.street, address.zipcode])
 
     return (
