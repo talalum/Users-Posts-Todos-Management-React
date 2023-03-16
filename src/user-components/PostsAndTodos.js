@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react'
 import Todo from './Todo'
 import Post from './Post'
 import axios from 'axios';
-
-
+import { v4 as uuidv4 } from 'uuid';
 
 const todosUrl = 'https://jsonplaceholder.typicode.com/todos';
 const postsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
 const PostsAndTodos = ({ showPosts, showTodos, userId, updetTodosCompleted }) => {
-    const [newTodo, setNewTodo] = useState({ userId: userId, id: Math.random(), title: '', completed: false });
-    const [newPost, setNewPost] = useState({ userId: userId, id: Math.random(), title: '', body: '' });
+    const [newTodo, setNewTodo] = useState({ userId: userId, id: uuidv4(), title: '', completed: false });
+    const [newPost, setNewPost] = useState({ userId: userId, id: uuidv4(), title: '', body: '' });
     const [displayPostForm, setDisplayPostForm] = useState(false);
     const [displayTodoForm, setDisplayTodoForm] = useState(false);
 
     const [todos, setTodos] = useState([]);
     const [posts, setPosts] = useState([]);
+    
 
     const fetchTodosAndPosts = async () => {
         const { data: todosData } = await axios.get(`${todosUrl}?userId=${userId}`);

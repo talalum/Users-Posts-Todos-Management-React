@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import User from './user-components/User';
 import { ErrorComponent } from './ErrorComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const usersUrl = 'https://jsonplaceholder.typicode.com/users';
@@ -11,7 +12,13 @@ const Users = () => {
     const [usersOriginal, setusersOriginal] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [displayAddUserForm, setDisplayAddUserForm] = useState(false);
-    const [newUser, setNewUser] = useState({ username: '', id: Math.random(), email: '', address: {} })
+    const [newUser, setNewUser] = useState({
+        username: '', id: uuidv4(), email: '', address: {
+            street: '',
+            city: '',
+            zipcode: ''
+        }
+    })
 
     const [inputError, setInputError] = useState(false)
 
@@ -47,14 +54,26 @@ const Users = () => {
             newUsers.push(newUser);
             setUsers(users);
             setDisplayAddUserForm(false);
-            setNewUser({ ...newUser, username: '', email: '', address: '', id: Math.random() });
+            setNewUser({
+                ...newUser, username: '', email: '', address: {
+                    street: '',
+                    city: '',
+                    zipcode: ''
+                }, id: uuidv4()
+            });
         }
         setInputError(true);
     }
     const cancelAddUser = () => {
         setDisplayAddUserForm(false);
         setInputError(false);
-        setNewUser({ ...newUser, username: '', email: '', address: '' });
+        setNewUser({
+            ...newUser, username: '', email: '', address: {
+                street: '',
+                city: '',
+                zipcode: ''
+            }
+        });
     }
 
     return (
